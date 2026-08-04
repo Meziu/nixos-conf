@@ -46,6 +46,8 @@ in
     popsicle
     deja-dup
     protonup-ng
+    rustup
+    obs-studio
   ];
 
   programs.kitty.enable = true;
