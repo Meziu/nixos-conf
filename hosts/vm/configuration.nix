@@ -14,6 +14,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/wireguard-laptop.nix
     ];
 
   # Bootloader.
@@ -35,24 +36,6 @@ in
   networking.networkmanager = {
     enable = true;
   };
-
-  #networking.wg-quick.interfaces = {
-  #  wg0 = {
-  #    address = [ "10.214.101.10/24" ];
-  #    dns = [ "10.214.101.1" ];
-  #    privateKeyFile = "/etc/wireguard/wireguardVPN.key";
-
-  #    peers = [
-  #      {
-  #        publicKey = "EP85eSyvxoRWRdzM/FGuQ8zZ/Vr43CBhvUq6bhZkG3Y=";
-  #        presharedKeyFile = "/etc/wireguard/wireguardVPN.psk";
-   #       allowedIPs = [ "0.0.0.0/0" "::/0" ];
-  #        endpoint = "meziu.ddns.net:51820";
-  #        persistentKeepalive = 25;
-  #      }
-  #    ];
-  #  };
-  #};
 
   # Set your time zone.
   time.timeZone = "Europe/Rome";
