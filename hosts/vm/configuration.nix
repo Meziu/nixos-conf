@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/users.nix
       ../../modules/common-settings.nix
       ../../modules/desktop-environment.nix
       ../../modules/hyprland.nix
