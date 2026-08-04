@@ -127,8 +127,11 @@ in
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
+    gamescopeSession.enable = true;
     extraPackages = [ pkgs.jdk ];
   };
+
+  programs.gamemode.enable = true;
 
   programs.java.enable = true;
 

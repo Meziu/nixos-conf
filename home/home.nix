@@ -45,6 +45,7 @@ in
     gnome-disk-utility
     popsicle
     deja-dup
+    protonup-ng
   ];
 
   programs.kitty.enable = true;
