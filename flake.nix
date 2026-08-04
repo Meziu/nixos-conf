@@ -11,11 +11,15 @@
     nixosConfigurations = {
       vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./hosts/vm/configuration.nix ];
+        modules = [
+          ./hosts/vm/configuration.nix
+        ];
       };
-      laptop = nixpkgs.lib.nixosSystem {
+      thinkbook = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./hosts/thinkbook/configuration.nix ];
+        modules = [
+          ./hosts/thinkbook/configuration.nix
+        ];
       };
     };
 

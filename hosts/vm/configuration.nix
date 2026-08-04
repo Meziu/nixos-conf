@@ -9,6 +9,7 @@ let
 in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
 
   imports =
     [ # Include the results of the hardware scan.
@@ -53,7 +54,7 @@ in
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -68,6 +69,11 @@ in
 
   # Configure console keymap
   console.keyMap = kb.consoleKeyMap;
+
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.andreaciliberti.enableGnomeKeyring = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -96,25 +102,50 @@ in
     isNormalUser = true;
     description = "Andrea Ciliberti";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
   programs.git.enable = true;
   programs.hyprland.enable = true;
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "kitty";
+  };
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+    extraPackages = [ pkgs.jdk ];
+  };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    kitty
-    home-manager
-  ];
+  programs.java.enable = true;
+
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+
+  environment = {
+    sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
+    pathsToLink = [
+      "/share/nautilus-python/extensions"
+    ];
+
+    systemPackages = with pkgs; [
+      vim
+      kitty
+      home-manager
+      nautilus
+      nautilus-python
+    ];
+  };
+
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -3,6 +3,8 @@ let
   kb = import ../modules/apple-aluminum-keyboard.nix;
 in
 {
+  nixpkgs.config.allowUnfree = true;
+
   home.username = "andreaciliberti";
   home.homeDirectory = "/home/andreaciliberti";
 
@@ -18,7 +20,36 @@ in
     kb_options = kb.options;
   };
 
+  home.packages = with pkgs; [
+    kdePackages.kate
+    kdePackages.filelight
+    vlc
+    audacity
+    cheese
+    gimp
+    imhex
+    prismlauncher
+    spotify
+    telegram-desktop
+    deluge
+    zed-editor
+    obsidian
+    chromium
+    libreoffice
+    thunderbird
+    eog # gnome image viewer
+    papers # gnome document viewer
+    gnome-system-monitor
+    gnome-clocks
+    gparted
+    gnome-disk-utility
+    popsicle
+    deja-dup
+  ];
+
   programs.kitty.enable = true;
+  programs.discord.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
