@@ -32,7 +32,27 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+  };
+
+  #networking.wg-quick.interfaces = {
+  #  wg0 = {
+  #    address = [ "10.214.101.10/24" ];
+  #    dns = [ "10.214.101.1" ];
+  #    privateKeyFile = "/etc/wireguard/wireguardVPN.key";
+
+  #    peers = [
+  #      {
+  #        publicKey = "EP85eSyvxoRWRdzM/FGuQ8zZ/Vr43CBhvUq6bhZkG3Y=";
+  #        presharedKeyFile = "/etc/wireguard/wireguardVPN.psk";
+   #       allowedIPs = [ "0.0.0.0/0" "::/0" ];
+  #        endpoint = "meziu.ddns.net:51820";
+  #        persistentKeepalive = 25;
+  #      }
+  #    ];
+  #  };
+  #};
 
   # Set your time zone.
   time.timeZone = "Europe/Rome";
@@ -101,8 +121,15 @@ in
   users.users."andreaciliberti" = {
     isNormalUser = true;
     description = "Andrea Ciliberti";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
   };
+
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
 
   # Install firefox.
   programs.firefox.enable = true;
