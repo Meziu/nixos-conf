@@ -62,6 +62,28 @@ in
           kb_options = kb.options;
         };
       };
+
+      monitor = {
+        output = "";
+        mode = "preferred";
+        position = "auto";
+        scale = "auto";
+      };
+
+      bind = [
+      {
+        _args = [
+          "SUPER + RETURN"
+          (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"kitty\")")
+        ];
+      }
+      {
+        _args = [
+          "SUPER + D"
+          (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"walker\")")
+        ];
+      }
+    ];
     };
   };
 
