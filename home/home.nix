@@ -15,12 +15,6 @@ in
     options = [ kb.options ]; # home.keyboard.options wants a list
   };
 
-  wayland.windowManager.hyprland.settings.input = {
-    kb_layout = kb.layout;
-    kb_variant = kb.variant;
-    kb_options = kb.options;
-  };
-
   home.packages = with pkgs; [
     kdePackages.kate
     kdePackages.filelight
@@ -58,6 +52,17 @@ in
     enable = true;
     package = null;
     portalPackage = null;
+    configType = "lua";
+
+    settings = {
+      config = {
+        input = {
+          kb_layout = kb.layout;
+          kb_variant = kb.variant;
+          kb_options = kb.options;
+        };
+      };
+    };
   };
 
   # Optional, hint Electron apps to use Wayland:
