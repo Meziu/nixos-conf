@@ -31,11 +31,4 @@
 
   # Enable touchpad support (enabled by default in most desktopManagers).
   services.libinput.enable = true;
-
-  hardware = {
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-  };
 }

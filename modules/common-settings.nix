@@ -20,6 +20,11 @@ in
   };
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  hardware.enableRedistributableFirmware = true;
+  # hardware.enableAllFirmware = true;
+
+  # services.hardware.bolt.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Rome";
 
