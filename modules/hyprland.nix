@@ -6,13 +6,6 @@
       xwayland.enable = true;
     };
 
-    programs.waybar.enable = true;
-
     environment.systemPackages = with pkgs; [
-      hyprlock
-      hyprpaper
-      hyprshot
-      walker
-      elephant
     ];
 }
