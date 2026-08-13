@@ -13,5 +13,6 @@
       hyprpaper
       hyprshot
       walker
+      elephant
     ];
 }

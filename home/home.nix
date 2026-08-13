@@ -43,6 +43,9 @@ in
     protonup-ng
     rustup
     obs-studio
+
+    # Hyprland software
+
   ];
 
   programs.kitty.enable = true;
@@ -63,27 +66,42 @@ in
         };
       };
 
+      on = [
+        {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"spice-vdagent\")\nend")
+          ];
+        }
+        #{
+        #  _args = [
+        #    "hyprland.start"
+        #    (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"elephant\")\nend")
+        #  ];
+        #}
+      ];
+
       monitor = {
         output = "";
-        mode = "preferred";
+        mode = "1920x1080@60";
         position = "auto";
-        scale = "auto";
+        scale = "1.0";
       };
 
       bind = [
-      {
-        _args = [
-          "SUPER + RETURN"
-          (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"kitty\")")
-        ];
-      }
-      {
-        _args = [
-          "SUPER + D"
-          (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"walker\")")
-        ];
-      }
-    ];
+        {
+          _args = [
+            "SUPER + RETURN"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"kitty\")")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + d"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"walker\")")
+          ];
+        }
+      ];
     };
   };
 
