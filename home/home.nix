@@ -47,6 +47,7 @@ in
     protonup-ng
     rustup
     obs-studio
+    networkmanagerapplet
 
     # Programming
     nil # Nix LSP
@@ -117,6 +118,8 @@ in
       };
     };
   };
+
+  services.network-manager-applet.enable = true;
 
   services.elephant.enable = true;
   services.walker = {
@@ -197,6 +200,7 @@ in
             "cpu"
             "memory"
             "disk"
+            "tray"
             "pulseaudio"
             "idle_inhibitor"
             "power-profiles-daemon"
@@ -269,6 +273,7 @@ in
             tooltip-format-wifi = "{essid} ({signalStrength}%)\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}";
             tooltip-format-ethernet = "{ifname}  {ipaddr}/{cidr}";
             tooltip-format-disconnected = "Disconnected";
+            on-click = "nm-applet";
           };
           "custom/vpn" = {
             exec = "${waybarVpnStatus}/bin/waybar-vpn-status";
