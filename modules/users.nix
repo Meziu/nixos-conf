@@ -5,6 +5,10 @@
   users.users."andreaciliberti" = {
     isNormalUser = true;
     description = "Andrea Ciliberti";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+    ];
   };
 }

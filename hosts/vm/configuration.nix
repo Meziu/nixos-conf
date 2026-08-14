@@ -5,17 +5,17 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/users.nix
-      ../../modules/common-settings.nix
-      ../../modules/desktop-environment.nix
-      ../../modules/fingerprint-thinkpad-e14.nix
-      ../../modules/intel-graphics-drivers.nix
-      ../../modules/wireguard-laptop.nix
-      ../../modules/system-apps-desktop.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/users.nix
+    ../../modules/common-settings.nix
+    ../../modules/desktop-environment.nix
+    ../../modules/fingerprint-thinkpad-e14.nix
+    ../../modules/intel-graphics-drivers.nix
+    ../../modules/wireguard-laptop.nix
+    ../../modules/system-apps-desktop.nix
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -26,5 +26,5 @@
 
   # VM Guest settings
   services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
+  services.spice-vdagentd.enable = true; # enable copy and paste between host and guest
 }

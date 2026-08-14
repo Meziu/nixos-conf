@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   networking.wg-quick.interfaces = {
@@ -11,7 +11,10 @@
         {
           publicKey = "EP85eSyvxoRWRdzM/FGuQ8zZ/Vr43CBhvUq6bhZkG3Y=";
           presharedKeyFile = "/etc/wireguard/wireguardvpn.psk";
-          allowedIPs = [ "0.0.0.0/0" "::/0" ];
+          allowedIPs = [
+            "0.0.0.0/0"
+            "::/0"
+          ];
           endpoint = "meziu.ddns.net:51820";
           persistentKeepalive = 25;
         }

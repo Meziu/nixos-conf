@@ -1,10 +1,13 @@
 { config, pkgs, ... }:
 
 let
-    kb = import ./apple-aluminum-keyboard.nix;
+  kb = import ./apple-aluminum-keyboard.nix;
 in
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = true;
 
   # Use latest kernel.
@@ -18,7 +21,7 @@ in
   networking.networkmanager = {
     enable = true;
   };
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   hardware.enableRedistributableFirmware = true;
   # hardware.enableAllFirmware = true;
