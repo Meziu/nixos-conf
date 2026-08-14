@@ -67,6 +67,8 @@ in
     };
   };
 
+  services.playerctld.enable = true;
+
   programs.kitty.enable = true;
   programs.discord.enable = true;
 
@@ -151,31 +153,31 @@ in
           text = ''
             REMOTE_HOST="10.214.101.1"  # set to an address only reachable through the tunnel
 
-            WG_LINE=$(nmcli -t -f NAME,TYPE,DEVICE connection show --active | grep ':wireguard:')
+            WG_LINE=$(nmcli -t -f NAME,TYPE,DEVICE connection show --active | grep ':wireguard:' || true)
 
             if [[ -n "$WG_LINE" ]]; then
                 WG_DEVICE=$(cut -d: -f3 <<< "$WG_LINE")
 
                 if ping -c 1 -W 2 "$REMOTE_HOST" > /dev/null 2>&1; then
-                    PRIVATE_IP=$(nmcli -g IP4.ADDRESS device show "$WG_DEVICE" | cut -d/ -f1)
+                    PRIVATE_IP=$(nmcli -g IP4.ADDRESS device show "$WG_DEVICE" | cut -d/ -f1 || true)
                     printf '{"text":"","class":"connected","tooltip":"WireGuard VPN active (%s)"}\n' "$PRIVATE_IP"
                 else
                     printf '{"text":"","class":"disconnected","tooltip":"WireGuard VPN not connected"}\n'
                 fi
             else
-                printf '{"text":"󰂭","class":"inactive","tooltip":"WireGuard VPN inactive"}\n'
+                printf '{"text":"󰂭","class":"off","tooltip":"WireGuard VPN inactive"}\n'
             fi
           '';
         };
         waybarVpnToggle = pkgs.writeShellApplication {
           name = "waybar-vpn-toggle";
           text = ''
-            ACTIVE_WG=$(nmcli -t -f NAME,TYPE connection show --active | grep ':wireguard$' | cut -d: -f1)
+            ACTIVE_WG=$(nmcli -t -f NAME,TYPE connection show --active | grep ':wireguard$' | cut -d: -f1 || true)
 
             if [[ -n "$ACTIVE_WG" ]]; then
                 nmcli connection down "$ACTIVE_WG"
             else
-                WG_NAME=$(nmcli -t -f NAME,TYPE connection show | grep ':wireguard$' | head -n1 | cut -d: -f1)
+                WG_NAME=$(nmcli -t -f NAME,TYPE connection show | grep ':wireguard$' | head -n1 | cut -d: -f1 || true)
                 if [[ -n "$WG_NAME" ]]; then
                     nmcli connection up "$WG_NAME"
                 fi
@@ -197,6 +199,7 @@ in
             "clock"
           ];
           modules-right = [
+            "custom/mediaplayer"
             "cpu"
             "memory"
             "disk"
@@ -283,6 +286,14 @@ in
             format = "{}";
             tooltip = true;
           };
+          "custom/mediaplayer" = {
+            exec = "playerctl metadata --format \"{{ title }}\" -s";
+            hide-empty-text = true;
+            interval = 1;
+            on-click = "playerctl play-pause";
+            format = "󰝚 {}";
+            tooltip = true;
+          };
         };
       };
 
@@ -332,7 +343,8 @@ in
       #power-profiles-daemon,
       #battery,
       #network,
-      #custom-vpn {
+      #custom-vpn,
+      #custom-mediaplayer {
         padding: 4px 12px;
         margin: 4px 2px;
         border-radius: 14px;
@@ -351,7 +363,8 @@ in
       #power-profiles-daemon:hover,
       #battery:hover,
       #network:hover,
-      #custom-vpn:hover {
+      #custom-vpn:hover,
+      #custom-mediaplayer:hover {
         background-color: rgba(250, 179, 135, 0.16);
       }
 
@@ -432,7 +445,8 @@ in
 
       #custom-vpn             { color: #6c7086; }
       #custom-vpn.connected   { color: #a6e3a1; }
-      #custom-vpn.disconnected{ color: #6c7086; }
+      #custom-vpn.disconnected,
+      #custom-vpn.off    { color: #6c7086; }
 
       /* ============================================================
         Power profiles daemon
