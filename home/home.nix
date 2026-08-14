@@ -134,8 +134,12 @@ in
     enable = true;
     settings = {
       splash = false;
+      preload = [
+        "${config.home.homeDirectory}/Pictures/Wallpapers/OuterWildsWallpaper.jpg"
+      ];
       wallpaper = [
         {
+          monitor = "";
           path = "${config.home.homeDirectory}/Pictures/Wallpapers/OuterWildsWallpaper.jpg";
         }
       ];
@@ -189,8 +193,13 @@ in
         mainBar = {
           layer = "top";
           position = "top";
-          height = 40; # taller bar
-          spacing = 0; # modules handle their own spacing now
+          height = 40;
+          spacing = 0; # modules handle their own spacing
+          margin-left = 4;
+          margin-right = 4;
+          margin-top = 4;
+          margin-bottom = 0;
+
           modules-left = [
             "ext/workspaces"
             "hyprland/window"
@@ -500,6 +509,17 @@ in
 
     settings = {
       config = {
+        general = {
+          gaps_in = 6;
+          gaps_out = 10;
+          border_size = 2;
+          "col.active_border" = "#F28C28";
+        };
+
+        decoration = {
+          rounding = 10;
+        };
+
         input = {
           kb_layout = kb.layout;
           kb_variant = kb.variant;
@@ -546,6 +566,12 @@ in
           _args = [
             "SUPER + G"
             (lib.generators.mkLuaInline "hl.dsp.window.float({action = \"toggle\"})")
+          ];
+        }
+        {
+          _args = [
+            "SUPER + F"
+            (lib.generators.mkLuaInline "hl.dsp.window.fullscreen({mode = fullscreen, action = \"toggle\"})")
           ];
         }
 
