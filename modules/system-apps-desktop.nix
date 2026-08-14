@@ -37,7 +37,8 @@
   };
 
   fonts.packages = with pkgs; [
-    font-awesome
+    nerd-fonts.symbols-only
+    nerd-fonts.ubuntu-mono
   ];
 
   programs.virt-manager.enable = true;

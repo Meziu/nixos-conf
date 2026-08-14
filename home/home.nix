@@ -146,37 +146,37 @@ in
         waybarVpnStatus = pkgs.writeShellApplication {
           name = "waybar-vpn-status";
           text = ''
-              REMOTE_HOST="10.214.101.1"  # set to an address only reachable through the tunnel
+            REMOTE_HOST="10.214.101.1"  # set to an address only reachable through the tunnel
 
-              WG_LINE=$(nmcli -t -f NAME,TYPE,DEVICE connection show --active | grep ':wireguard:')
+            WG_LINE=$(nmcli -t -f NAME,TYPE,DEVICE connection show --active | grep ':wireguard:')
 
-              if [[ -n "$WG_LINE" ]]; then
-                  WG_DEVICE=$(cut -d: -f3 <<< "$WG_LINE")
+            if [[ -n "$WG_LINE" ]]; then
+                WG_DEVICE=$(cut -d: -f3 <<< "$WG_LINE")
 
-                  if ping -c 1 -W 2 "$REMOTE_HOST" > /dev/null 2>&1; then
-                      PRIVATE_IP=$(nmcli -g IP4.ADDRESS device show "$WG_DEVICE" | cut -d/ -f1)
-                      printf '{"text":"","class":"connected","tooltip":"WireGuard VPN active (%s)"}\n' "$PRIVATE_IP"
-                  else
-                      printf '{"text":"","class":"disconnected","tooltip":"WireGuard VPN not connected"}\n'
-                  fi
-              else
-                  printf '{"text":"","class":"inactive","tooltip":"WireGuard VPN inactive"}\n'
-              fi
+                if ping -c 1 -W 2 "$REMOTE_HOST" > /dev/null 2>&1; then
+                    PRIVATE_IP=$(nmcli -g IP4.ADDRESS device show "$WG_DEVICE" | cut -d/ -f1)
+                    printf '{"text":"","class":"connected","tooltip":"WireGuard VPN active (%s)"}\n' "$PRIVATE_IP"
+                else
+                    printf '{"text":"","class":"disconnected","tooltip":"WireGuard VPN not connected"}\n'
+                fi
+            else
+                printf '{"text":"󰂭","class":"inactive","tooltip":"WireGuard VPN inactive"}\n'
+            fi
           '';
         };
         waybarVpnToggle = pkgs.writeShellApplication {
           name = "waybar-vpn-toggle";
           text = ''
-              ACTIVE_WG=$(nmcli -t -f NAME,TYPE connection show --active | grep ':wireguard$' | cut -d: -f1)
+            ACTIVE_WG=$(nmcli -t -f NAME,TYPE connection show --active | grep ':wireguard$' | cut -d: -f1)
 
-              if [[ -n "$ACTIVE_WG" ]]; then
-                  nmcli connection down "$ACTIVE_WG"
-              else
-                  WG_NAME=$(nmcli -t -f NAME,TYPE connection show | grep ':wireguard$' | head -n1 | cut -d: -f1)
-                  if [[ -n "$WG_NAME" ]]; then
-                      nmcli connection up "$WG_NAME"
-                  fi
-              fi
+            if [[ -n "$ACTIVE_WG" ]]; then
+                nmcli connection down "$ACTIVE_WG"
+            else
+                WG_NAME=$(nmcli -t -f NAME,TYPE connection show | grep ':wireguard$' | head -n1 | cut -d: -f1)
+                if [[ -n "$WG_NAME" ]]; then
+                    nmcli connection up "$WG_NAME"
+                fi
+            fi
           '';
         };
       in
@@ -252,18 +252,20 @@ in
             format = "{icon}";
             format-icons = {
               activated = "";
-              deactivated = "";
+              deactivated = "";
             };
           };
           "network" = {
-            format-wifi = "{icon}  {signalStrength}%";
-            format-ethernet = "  {ifname}";
-            format-disconnected = "  Offline";
+            format-wifi = "{icon} {signalStrength}%";
+            format-ethernet = "󰈀 {ifname}";
+            format-disconnected = "󰤮 Offline";
             format-icons = [
-              ""
-              ""
-              ""
-            ]; # low → high signal, waybar splits 0-100% into thirds automatically
+              "󰤯"
+              "󰤟"
+              "󰤢"
+              "󰤥"
+              "󰤨"
+            ];
             tooltip-format-wifi = "{essid} ({signalStrength}%)\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}";
             tooltip-format-ethernet = "{ifname}  {ipaddr}/{cidr}";
             tooltip-format-disconnected = "Disconnected";
@@ -281,11 +283,8 @@ in
 
     style = ''
       * {
-        /* One place to declare Font Awesome — every module inherits it,
-          and text glyphs (window titles, clock, tooltips) simply fall
-          through to the next font in the stack since FA has no letters. */
-        font-family: "Font Awesome 6 Free Solid", "Font Awesome 6 Free", "sans-serif";
-        font-size: 16px;
+        font-family: "Symbols Nerd Font", "UbuntuMono Nerd Font";
+        font-size: 18px;
         font-weight: bold;
         min-height: 0;
       }
@@ -467,7 +466,7 @@ in
       tooltip label {
         color: #cdd6f4;
         padding: 6px 10px;
-        font-size: 13px;
+        font-size: 16px;
       }
     '';
   };
