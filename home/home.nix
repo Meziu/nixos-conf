@@ -54,7 +54,6 @@ in
 
     # Hyprland software
     hyprlock
-    hyprpaper
     hyprshot
   ];
 
@@ -126,82 +125,159 @@ in
     systemd.enable = true;
   };
 
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      splash = false;
+      wallpaper = [
+        {
+          path = "${config.home.homeDirectory}/Pictures/Wallpapers/OuterWildsWallpaper.jpg";
+        }
+      ];
+    };
+  };
+
   programs.waybar = {
     enable = true;
     systemd.enable = true;
 
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 40; # taller bar
-        spacing = 0; # modules handle their own spacing now
-        modules-left = [
-          "ext/workspaces"
-          "hyprland/window"
-        ];
-        modules-center = [
-          "clock"
-        ];
-        modules-right = [
-          "cpu"
-          "memory"
-          "disk"
-          "pulseaudio"
-          "idle_inhibitor"
-          "power-profiles-daemon"
-          "battery"
-          "network"
-        ];
-        "ext/workspaces" = {
-          format = "{icon}";
-          "on-scroll-up" = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})' ";
-          "on-scroll-down" = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})' ";
-          "all-outputs" = true;
-          "on-click" = "activate";
-          "active-only" = false;
-        };
-        "memory" = {
-          "tooltip-format" = "{used:0.1f}G / {total:0.1f}G used";
-        };
-        "power-profiles-daemon" = {
-          format = "{icon}";
-          tooltip = true;
-          "tooltip-format" = "Power profile: {profile}\nDriver: {driver}";
-          "format-icons" = {
-            "default" = ""; # Bolt (Fallback/Unknown)
-            "performance" = ""; # Bolt
-            "balanced" = ""; # Balance Scale
-            "power-saver" = ""; # Leaf
-          };
-        };
-        "battery" = {
-          "states" = {
-            "warning" = 30;
-            "critical" = 15;
-          };
-          "format" = "{icon} {capacity}%";
-          "format-charging" = "\uf0e7 {capacity}%";
-          "format-plugged" = "\uf1e6 {capacity}%";
-          "format-icons" = [
-            ""
-            ""
-            ""
-            ""
-            ""
-          ];
+    settings =
+      let
+        waybarVpnStatus = pkgs.writeShellApplication {
+          name = "waybar-vpn-status";
+          text = ''
+              REMOTE_HOST="10.214.101.1"  # set to an address only reachable through the tunnel
 
-          "tooltip-format" = "{timeTo} - {capacity}%";
+              WG_LINE=$(nmcli -t -f NAME,TYPE,DEVICE connection show --active | grep ':wireguard:')
+
+              if [[ -n "$WG_LINE" ]]; then
+                  WG_DEVICE=$(cut -d: -f3 <<< "$WG_LINE")
+
+                  if ping -c 1 -W 2 "$REMOTE_HOST" > /dev/null 2>&1; then
+                      PRIVATE_IP=$(nmcli -g IP4.ADDRESS device show "$WG_DEVICE" | cut -d/ -f1)
+                      printf '{"text":"","class":"connected","tooltip":"WireGuard VPN active (%s)"}\n' "$PRIVATE_IP"
+                  else
+                      printf '{"text":"","class":"disconnected","tooltip":"WireGuard VPN not connected"}\n'
+                  fi
+              else
+                  printf '{"text":"","class":"inactive","tooltip":"WireGuard VPN inactive"}\n'
+              fi
+          '';
         };
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
+        waybarVpnToggle = pkgs.writeShellApplication {
+          name = "waybar-vpn-toggle";
+          text = ''
+              ACTIVE_WG=$(nmcli -t -f NAME,TYPE connection show --active | grep ':wireguard$' | cut -d: -f1)
+
+              if [[ -n "$ACTIVE_WG" ]]; then
+                  nmcli connection down "$ACTIVE_WG"
+              else
+                  WG_NAME=$(nmcli -t -f NAME,TYPE connection show | grep ':wireguard$' | head -n1 | cut -d: -f1)
+                  if [[ -n "$WG_NAME" ]]; then
+                      nmcli connection up "$WG_NAME"
+                  fi
+              fi
+          '';
+        };
+      in
+      {
+        mainBar = {
+          layer = "top";
+          position = "top";
+          height = 40; # taller bar
+          spacing = 0; # modules handle their own spacing now
+          modules-left = [
+            "ext/workspaces"
+            "hyprland/window"
+          ];
+          modules-center = [
+            "clock"
+          ];
+          modules-right = [
+            "cpu"
+            "memory"
+            "disk"
+            "pulseaudio"
+            "idle_inhibitor"
+            "power-profiles-daemon"
+            "battery"
+            "network"
+            "custom/vpn"
+          ];
+          "ext/workspaces" = {
+            format = "{icon}";
+            "on-scroll-up" = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})' ";
+            "on-scroll-down" = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})' ";
+            "all-outputs" = true;
+            "on-click" = "activate";
+            "active-only" = false;
+          };
+          "clock" = {
+            format = "{:%A %d %B  %H:%M}";
+            "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          };
+          "memory" = {
+            "tooltip-format" = "{used:0.1f}G / {total:0.1f}G used";
+          };
+          "power-profiles-daemon" = {
+            format = "{icon}";
+            tooltip = true;
+            "tooltip-format" = "Power profile: {profile}\nDriver: {driver}";
+            "format-icons" = {
+              "default" = ""; # Bolt (Fallback/Unknown)
+              "performance" = ""; # Bolt
+              "balanced" = ""; # Balance Scale
+              "power-saver" = ""; # Leaf
+            };
+          };
+          "battery" = {
+            "states" = {
+              "warning" = 30;
+              "critical" = 15;
+            };
+            "format" = "{icon} {capacity}%";
+            "format-charging" = "\uf0e7 {capacity}%";
+            "format-plugged" = "\uf1e6 {capacity}%";
+            "format-icons" = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
+
+            "tooltip-format" = "{timeTo} - {capacity}%";
+          };
+          "idle_inhibitor" = {
+            format = "{icon}";
+            format-icons = {
+              activated = "";
+              deactivated = "";
+            };
+          };
+          "network" = {
+            format-wifi = "{icon}  {signalStrength}%";
+            format-ethernet = "  {ifname}";
+            format-disconnected = "  Offline";
+            format-icons = [
+              ""
+              ""
+              ""
+            ]; # low → high signal, waybar splits 0-100% into thirds automatically
+            tooltip-format-wifi = "{essid} ({signalStrength}%)\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}";
+            tooltip-format-ethernet = "{ifname}  {ipaddr}/{cidr}";
+            tooltip-format-disconnected = "Disconnected";
+          };
+          "custom/vpn" = {
+            exec = "${waybarVpnStatus}/bin/waybar-vpn-status";
+            on-click = "${waybarVpnToggle}/bin/waybar-vpn-toggle";
+            return-type = "json";
+            interval = 5;
+            format = "{}";
+            tooltip = true;
           };
         };
       };
-    };
 
     style = ''
       * {
@@ -251,7 +327,8 @@ in
       #idle_inhibitor,
       #power-profiles-daemon,
       #battery,
-      #network {
+      #network,
+      #custom-vpn {
         padding: 4px 12px;
         margin: 4px 2px;
         border-radius: 14px;
@@ -269,7 +346,8 @@ in
       #idle_inhibitor:hover,
       #power-profiles-daemon:hover,
       #battery:hover,
-      #network:hover {
+      #network:hover,
+      #custom-vpn:hover {
         background-color: rgba(250, 179, 135, 0.16);
       }
 
@@ -343,11 +421,14 @@ in
       /* ============================================================
         Network
         ============================================================ */
-      #network { color: #74c7ec; }
+      #network.wifi         { color: #74c7ec; }
+      #network.ethernet      { color: #94e2d5; }
       #network.disconnected,
-      #network.disabled {
-        color: #6c7086;
-      }
+      #network.disabled      { color: #6c7086; }
+
+      #custom-vpn             { color: #6c7086; }
+      #custom-vpn.connected   { color: #a6e3a1; }
+      #custom-vpn.disconnected{ color: #6c7086; }
 
       /* ============================================================
         Power profiles daemon
