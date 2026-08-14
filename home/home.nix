@@ -63,6 +63,108 @@ in
   programs.waybar = {
     enable = true;
     systemd.enable = true;
+
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 30;
+
+        modules-left = [
+          "ext/workspaces"
+          "hyprland/window"
+        ];
+        modules-center = [
+          "clock"
+        ];
+        modules-right = [
+          "cpu"
+          "memory"
+          "disk"
+          "pulseaudio"
+          "idle_inhibitor"
+          "power-profiles-daemon"
+          "battery"
+          "network"
+        ];
+
+        "ext/workspaces" = {
+          format = "{icon}";
+          "on-scroll-up" = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})' ";
+          "on-scroll-down" = "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})' ";
+          "all-outputs" = true;
+          "on-click" = "activate";
+          "active-only" = false;
+        };
+
+        "memory" = {
+          "tooltip-format" = "{used:0.1f}G / {total:0.1f}G used";
+        };
+
+        "power-profiles-daemon" = {
+          format = "{icon}";
+          tooltip = true;
+          "tooltip-format" = "Power profile: {profile}\nDriver: {driver}";
+
+          "format-icons" = {
+              "default" = "";      # Bolt (Fallback/Unknown)
+              "performance" = "";  # Bolt
+              "balanced" = "";     # Balance Scale
+              "power-saver" = "";   # Leaf
+          };
+        };
+
+        "battery" = {
+            "states" = {
+                "warning" = 30;
+                "critical" = 15;
+            };
+
+            "format" = "{icon} {capacity}%";
+            "format-charging" = "\uf0e7 {capacity}%";
+            "format-plugged" = "\uf1e6 {capacity}%";
+            "format-icons" = ["" "" "" "" ""];
+
+            "tooltip-format" = "{timeTo} - {capacity}%";
+        };
+      };
+    };
+
+    style = "
+      #battery {
+          font-family: \"Font Awesome 6 Free Solid\", \"Font Awesome 6 Free\";
+          color: #a6e3a1;
+      }
+      #battery.warning {
+          color: #f9e2af;
+      }
+      #battery.critical {
+          color: #f38ba8;
+          animation: blink 1s infinite alternate;
+      }
+      #battery.charging {
+          color: #89b4fa;
+      }
+
+      #power-profiles-daemon {
+          font-family: \"Font Awesome 6 Free Solid\", \"Font Awesome 6 Free\";
+          padding: 0 8px;
+      }
+
+      #power-profiles-daemon.performance {
+          color: #f38ba8;
+      }
+      #power-profiles-daemon.balanced {
+          color: #f9e2af;
+      }
+      #power-profiles-daemon.power-saver {
+          color: #a6e3a1;
+      }
+
+      @keyframes blink {
+          to { opacity: 0.4; }
+      }
+    ";
   };
 
   wayland.windowManager.hyprland = {
