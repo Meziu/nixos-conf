@@ -69,7 +69,12 @@ in
 
   services.playerctld.enable = true;
 
-  programs.kitty.enable = true;
+  programs.kitty = {
+    enable = true;
+    settings = {
+      background_opacity = 0.6;
+    };
+  };
   programs.discord.enable = true;
 
   programs.zed-editor = {
