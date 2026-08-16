@@ -27,6 +27,13 @@
           icon = "${pkgs.wleave}/share/wleave/icons/logout.svg";
         }
         {
+          label = "sleep";
+          action = "systemctl sleep";
+          text = "Sleep";
+          keybind = "w";
+          icon = "${pkgs.wleave}/share/wleave/icons/suspend.svg";
+        }
+        {
           label = "reboot";
           action = "systemctl reboot";
           text = "Reboot";
