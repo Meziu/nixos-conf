@@ -49,8 +49,13 @@ in
             (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"spice-vdagent\")\nend")
           ];
         }
+        {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"deja-dup --gapplication-service\")\nend")
+          ];
+        }
       ];
-
 
       monitor = [
         {
