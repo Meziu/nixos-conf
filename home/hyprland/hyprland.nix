@@ -35,13 +35,12 @@ in
         };
       };
 
-      layer_rule = [
-        # wleave's fade out animation keeps it visible after locking
+      animation = [
         {
-          match = {
-            namespace = "wleave";
-          };
-          no_anim = true;
+          leaf = "fadeLayersOut"; # wleave takes so long it stays visible during hyprlock
+          enabled = true;
+          speed = 2;
+          bezier = "default";
         }
       ];
 
