@@ -23,6 +23,11 @@ in
   };
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
+
   hardware.enableRedistributableFirmware = true;
   # hardware.enableAllFirmware = true;
 

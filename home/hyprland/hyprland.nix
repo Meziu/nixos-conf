@@ -51,12 +51,21 @@ in
         }
       ];
 
-      monitor = {
-        output = "";
-        mode = "1920x1080@60";
-        position = "auto";
-        scale = "1.0";
-      };
+
+      monitor = [
+        {
+          output = "eDP-1";
+          mode = "preferred";
+          position = "auto";
+          scale = "1.0";
+        }
+        {
+          output = "HDMI-A-1";
+          mode = "preferred";
+          position = "auto-left";
+          scale = "1.0";
+        }
+      ];
 
       bind = [
         {
