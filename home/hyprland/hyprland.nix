@@ -55,6 +55,12 @@ in
             (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"deja-dup --gapplication-service\")\nend")
           ];
         }
+        {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"blueman-applet\")\nend")
+          ];
+        }
       ];
 
       monitor = [

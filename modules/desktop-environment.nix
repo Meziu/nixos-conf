@@ -36,6 +36,8 @@
 
   services.blueman.enable = true;
 
+  services.libinput.touchpad.naturalScrolling = true;
+
   services.power-profiles-daemon.enable = true;
 
   # Enable touchpad support (enabled by default in most desktopManagers).
