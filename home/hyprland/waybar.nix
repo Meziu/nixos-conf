@@ -89,8 +89,15 @@
             format = "{:%A %d %B  %H:%M}";
             "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           };
+          "cpu" = {
+            tooltip = true;
+          };
           "memory" = {
             "tooltip-format" = "{used:0.1f}G / {total:0.1f}G used";
+            tooltip = true;
+          };
+          "disk" = {
+            format = "{percentage_used}%";
           };
           "power-profiles-daemon" = {
             format = "{icon}";
@@ -109,8 +116,8 @@
               "critical" = 15;
             };
             "format" = "{icon} {capacity}%";
-            "format-charging" = "\uf0e7 {capacity}%";
-            "format-plugged" = "\uf1e6 {capacity}%";
+            "format-charging" = " {capacity}%";
+            "format-plugged" = " {capacity}%";
             "format-icons" = [
               ""
               ""
@@ -118,8 +125,8 @@
               ""
               ""
             ];
-
             "tooltip-format" = "{timeTo} - {capacity}%";
+            interval = 5;
           };
           "idle_inhibitor" = {
             format = "{icon}";
@@ -144,7 +151,6 @@
             tooltip-format-wifi = "{essid} ({signalStrength}%)\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}";
             tooltip-format-ethernet = "{ifname}  {ipaddr}/{cidr}";
             tooltip-format-disconnected = "Disconnected";
-            on-click = "nm-applet";
           };
           "custom/vpn" = {
             exec = "${waybarVpnStatus}/bin/waybar-vpn-status";

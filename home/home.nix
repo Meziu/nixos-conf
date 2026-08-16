@@ -24,6 +24,7 @@ in
     options = [ kb.options ]; # home.keyboard.options wants a list
   };
 
+  xdg.enable = true;
   xdg.portal.enable = true;
 
   home.packages = with pkgs; [

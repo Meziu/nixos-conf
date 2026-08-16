@@ -21,6 +21,7 @@
     chromium
     libreoffice
     thunderbird
+    ente-auth
     eog # gnome image viewer
     papers # gnome document viewer
     gnome-system-monitor
