@@ -33,6 +33,7 @@
     obs-studio
     rclone
     openssh
+    gnupg
   ];
 
   programs.kitty = {

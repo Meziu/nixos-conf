@@ -58,9 +58,10 @@ in
           mode = "preferred";
           position = "auto";
           scale = "1.0";
+          disabled = true;
         }
         {
-          output = "HDMI-A-1";
+          output = "desc:LG Electronics E2250 004MAJMFW724";
           mode = "preferred";
           position = "auto-left";
           scale = "1.0";
