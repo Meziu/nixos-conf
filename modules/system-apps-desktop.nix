@@ -30,6 +30,7 @@
 
     systemPackages = with pkgs; [
       vim
+      usbutils
       kitty
       home-manager
       nautilus

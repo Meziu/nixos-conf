@@ -99,6 +99,9 @@
           "disk" = {
             format = "{percentage_used}%";
           };
+          "pulseaudio" = {
+            on-click = "pavucontrol";
+          };
           "power-profiles-daemon" = {
             format = "{icon}";
             tooltip = true;

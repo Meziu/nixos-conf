@@ -35,6 +35,7 @@
     rclone
     openssh
     gnupg
+    pavucontrol
   ];
 
   programs.kitty = {
