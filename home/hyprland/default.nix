@@ -13,6 +13,11 @@
     ./launcher.nix
   ];
 
+  home.packages = with pkgs; [
+    hyprlock
+    libnotify
+  ];
+
   dconf = {
     enable = true;
     settings = {
@@ -25,6 +30,8 @@
   services.playerctld.enable = true;
 
   services.network-manager-applet.enable = true;
+
+  programs.hyprshot.enable = true;
 
   # Optional, hint Electron apps to use Wayland:
   home.sessionVariables.NIXOS_OZONE_WL = "1";

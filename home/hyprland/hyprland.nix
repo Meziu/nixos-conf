@@ -9,8 +9,6 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;
-    portalPackage = null;
     configType = "lua";
 
     systemd.enable = true;

@@ -28,11 +28,6 @@ in
 
   home.packages = with pkgs; [
     networkmanagerapplet
-
-    # Hyprland software
-    hyprlock
-    hyprshot
-    libnotify
   ];
 
   home.stateVersion = "26.05";

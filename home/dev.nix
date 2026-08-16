@@ -5,7 +5,6 @@
     nil # Nix LSP
     nixfmt
     rustup
-    rust-analyzer
     gcc
     swi-prolog
     haskellPackages.ghc
@@ -19,7 +18,7 @@
     numpy
     matplotlib
     pillow
-    scikitlearn
+    scikit-learn
     scipy
     torch
   ];
