@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.firefox.enable = true;
@@ -20,6 +20,7 @@
   programs.java.enable = true;
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
+  services.flatpak.enable = true;
 
   environment = {
     sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";

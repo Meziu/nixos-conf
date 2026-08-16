@@ -8,8 +8,9 @@ let
 in
 {
   imports = [
-    ./programs.nix
     ./hyprland
+    ./programs.nix
+    ./dev.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -23,38 +24,10 @@ in
     options = [ kb.options ]; # home.keyboard.options wants a list
   };
 
-  home.packages = with pkgs; [
-    kdePackages.kate
-    kdePackages.filelight
-    vlc
-    audacity
-    cheese
-    gimp
-    imhex
-    prismlauncher
-    spotify
-    telegram-desktop
-    deluge
-    obsidian
-    chromium
-    libreoffice
-    thunderbird
-    eog # gnome image viewer
-    papers # gnome document viewer
-    gnome-system-monitor
-    gnome-clocks
-    gparted
-    gnome-disk-utility
-    popsicle
-    deja-dup
-    protonup-ng
-    rustup
-    obs-studio
-    networkmanagerapplet
+  xdg.portal.enable = true;
 
-    # Programming
-    nil # Nix LSP
-    nixfmt
+  home.packages = with pkgs; [
+    networkmanagerapplet
 
     # Hyprland software
     hyprlock

@@ -1,6 +1,40 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
+  imports = [
+    ./tex.nix
+  ];
+
+  home.packages = with pkgs; [
+    kdePackages.kate
+    kdePackages.filelight
+    vlc
+    audacity
+    cheese
+    gimp
+    imhex
+    prismlauncher
+    spotify
+    telegram-desktop
+    deluge
+    obsidian
+    chromium
+    libreoffice
+    thunderbird
+    eog # gnome image viewer
+    papers # gnome document viewer
+    gnome-system-monitor
+    gnome-clocks
+    gparted
+    gnome-disk-utility
+    popsicle
+    deja-dup
+    protonup-ng
+    obs-studio
+    rclone
+    openssh
+  ];
+
   programs.kitty = {
     enable = true;
     settings = {
@@ -14,6 +48,13 @@
 
     extensions = [
       "nix"
+      "git-firefly"
+      "toml"
+      "html1"
+      "make"
+      "xml"
+      "haskell"
+      "prolog"
     ];
 
     userSettings = {
