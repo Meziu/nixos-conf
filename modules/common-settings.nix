@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   kb = import ./apple-aluminum-keyboard.nix;
