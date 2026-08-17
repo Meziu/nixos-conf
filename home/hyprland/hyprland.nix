@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   ...
 }:
 
@@ -36,6 +37,19 @@ in
           enforce_permissions = 1;
         };
       };
+
+      permission = [
+        {
+          binary = "${pkgs.quickshell}/bin/quickshell";
+          type = "screencopy";
+          mode = "allow";
+        }
+        {
+          binary = "${pkgs.hyprlock}/bin/hyprlock";
+          type = "screencopy";
+          mode = "allow";
+        }
+      ];
 
       animation = [
         {
@@ -99,7 +113,7 @@ in
         {
           _args = [
             "SUPER + Q"
-            (lib.generators.mkLuaInline "hl.dsp.window.kill()")
+            (lib.generators.mkLuaInline "hl.dsp.window.close()")
           ];
         }
         {
@@ -112,6 +126,22 @@ in
           _args = [
             "SUPER + F"
             (lib.generators.mkLuaInline "hl.dsp.window.fullscreen({mode = fullscreen, action = \"toggle\"})")
+          ];
+        }
+        {
+          _args = [
+            "ALT + TAB"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("qs ipc -c qs-hyprview call expose cycle 1")'')
+          ];
+        }
+        {
+          _args = [
+            "ALT + ALT_L"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("qs ipc -c qs-hyprview call expose select && qs ipc -c qs-hyprview call expose close")'')
+            {
+              release = true;
+              transparent = true;
+            }
           ];
         }
 

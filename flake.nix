@@ -5,6 +5,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    qs-hyprview = {
+      url = "github:Meziu/qs-hyprview";
+      flake = false;
+    };
   };
 
   outputs =
@@ -12,6 +16,7 @@
       self,
       nixpkgs,
       home-manager,
+      qs-hyprview,
       ...
     }@inputs:
     {

@@ -36,10 +36,27 @@
         "type": "github"
       }
     },
+    "qs-hyprview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787010425,
+        "narHash": "sha256-prHZfgwgUYH3SjpWDC3a0uEn6bW2BcDxsg+faP/9SxY=",
+        "owner": "Meziu",
+        "repo": "qs-hyprview",
+        "rev": "b012b1abfa64db13ed02773bbd27bd16c86d0cbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Meziu",
+        "repo": "qs-hyprview",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "qs-hyprview": "qs-hyprview"
       }
     }
   },

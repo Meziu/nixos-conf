@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   ...
 }:
@@ -37,8 +38,13 @@
   programs.hyprshot.enable = true;
 
   programs.quickshell = {
-    enable = false;
-    systemd.enable = false;
+    enable = true;
+    systemd.enable = true;
+
+    configs = {
+      qs-hyprview = inputs.qs-hyprview;
+    };
+    activeConfig = "qs-hyprview";
   };
   systemd.user.services.quickshell.Service.Environment = [
     "QML2_IMPORT_PATH=${pkgs.qt6.qt5compat}/lib/qt-6/qml"
