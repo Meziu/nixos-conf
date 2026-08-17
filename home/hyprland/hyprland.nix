@@ -31,6 +31,10 @@ in
           kb_variant = kb.variant;
           kb_options = kb.options;
         };
+
+        ecosystem = {
+          enforce_permissions = 1;
+        };
       };
 
       animation = [

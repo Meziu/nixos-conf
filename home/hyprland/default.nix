@@ -16,6 +16,9 @@
   home.packages = with pkgs; [
     hyprlock
     libnotify
+
+    qt6.qtwayland
+    qt6.qt5compat
   ];
 
   dconf = {
@@ -32,6 +35,15 @@
   services.network-manager-applet.enable = true;
 
   programs.hyprshot.enable = true;
+
+  programs.quickshell = {
+    enable = false;
+    systemd.enable = false;
+  };
+  systemd.user.services.quickshell.Service.Environment = [
+    "QML2_IMPORT_PATH=${pkgs.qt6.qt5compat}/lib/qt-6/qml"
+  ];
+  home.sessionVariables.QML2_IMPORT_PATH = "${pkgs.qt6.qt5compat}/lib/qt-6/qml";
 
   # Optional, hint Electron apps to use Wayland:
   home.sessionVariables.NIXOS_OZONE_WL = "1";
