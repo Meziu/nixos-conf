@@ -17,7 +17,7 @@
       control-center-layer = "top";
       layer-shell = true;
       cssPriority = "application";
-      hide-on-clear = true;
+      hide-on-clear = false;
       fit-to-screen = false;
       control-center-height = -1;
       control-center-width = 380;
@@ -296,8 +296,9 @@
 
       .notification-content {
         background: linear-gradient(135deg,
-                      rgba(250, 179, 135, 0.14),
-                      rgba(250, 179, 135, 0.04));
+                      rgba(250, 179, 135, 0.16),
+                      rgba(250, 179, 135, 0.05)),
+                    rgba(30, 30, 46, 0.90);
         border: 1px solid rgba(250, 179, 135, 0.22);
         border-radius: 14px;
         padding: 10px 12px;
@@ -309,8 +310,9 @@
 
       .notification-row:hover .notification-content {
         background: linear-gradient(135deg,
-                      rgba(250, 179, 135, 0.20),
-                      rgba(250, 179, 135, 0.07));
+                      rgba(250, 179, 135, 0.22),
+                      rgba(250, 179, 135, 0.08)),
+                    rgba(30, 30, 46, 0.94);
         border-color: rgba(250, 179, 135, 0.4);
       }
 
@@ -332,7 +334,10 @@
       .notification-action {
         padding: 6px 10px;
         margin: 6px 4px 0 4px;
-        background: rgba(250, 179, 135, 0.10);
+        background: linear-gradient(135deg,
+                      rgba(250, 179, 135, 0.14),
+                      rgba(250, 179, 135, 0.04)),
+                    rgba(30, 30, 46, 0.85);
         border: 1px solid rgba(250, 179, 135, 0.20);
         border-radius: 10px;
         color: #f5e0dc;
@@ -374,6 +379,9 @@
         font-size: 14px;
         text-shadow: none;
         background: transparent;
+        .body {
+          wrap: true;
+        }
       }
 
       .time {
@@ -395,7 +403,7 @@
       .app-name {
         color: #fab387;
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 800;
       }
 
       .progress-bar {
