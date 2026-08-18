@@ -40,7 +40,7 @@ in
 
       permission = [
         {
-          binary = "${pkgs.quickshell}/bin/quickshell";
+          binary = "${pkgs.quickshell}/bin/.quickshell-wrapped";
           type = "screencopy";
           mode = "allow";
         }
