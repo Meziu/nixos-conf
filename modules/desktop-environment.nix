@@ -6,6 +6,7 @@
   # services.xserver.enable = true;
 
   services.displayManager.gdm.enable = true;
+  security.pam.services.gdm.enableGnomeKeyring = true;
   # services.desktopManager.plasma6.enable = true;
 
   imports = [
