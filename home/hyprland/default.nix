@@ -15,6 +15,8 @@
   ];
 
   home.packages = with pkgs; [
+    brightnessctl
+
     hyprlock
     libnotify
 
@@ -32,7 +34,7 @@
   };
 
   services.playerctld.enable = true;
-
+  services.pipewire.wireplumber.enable = true;
   services.network-manager-applet.enable = true;
 
   programs.hyprshot.enable = true;

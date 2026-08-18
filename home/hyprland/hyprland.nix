@@ -196,6 +196,67 @@ in
           ];
         }
 
+        # SpecialKeys Binds
+        {
+          _args = [
+            "XF86AudioPlay"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl play-pause\")")
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioNext"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl next\")")
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioPrev"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl previous\")")
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioStop"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl stop\")")
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioRaiseVolume"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+\")")
+            { locked = true; repeating = true; }
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioLowerVolume"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-\")")
+            { locked = true; repeating = true; }
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioMute"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle\")")
+            { locked = true; }
+          ];
+        }
+        {
+          _args = [
+            "XF86MonBrightnessUp"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl -e4 -n2 set 5%+\")")
+            { locked = true; repeating = true; }
+          ];
+        }
+        {
+          _args = [
+            "XF86MonBrightnessDown"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl -e4 -n2 set 5%-\")")
+            { locked = true; repeating = true; }
+          ];
+        }
+
         # Workspace Binds
         {
           _args = [
