@@ -6,7 +6,7 @@
   # services.xserver.enable = true;
 
   services.displayManager.gdm.enable = true;
-  security.pam.services.gdm.enableGnomeKeyring = true;
+  security.pam.services.gdm-password.enableGnomeKeyring = true;
   # services.desktopManager.plasma6.enable = true;
 
   imports = [
@@ -16,7 +16,6 @@
   services.gvfs.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.andreaciliberti.enableGnomeKeyring = true;
   programs.seahorse.enable = true;
 
   # Enable sound with pipewire.

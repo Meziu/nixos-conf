@@ -31,6 +31,10 @@ in
           kb_layout = kb.layout;
           kb_variant = kb.variant;
           kb_options = kb.options;
+
+          touchpad = {
+            natural_scroll = true;
+          };
         };
 
         ecosystem = {
@@ -225,14 +229,20 @@ in
           _args = [
             "XF86AudioRaiseVolume"
             (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+\")")
-            { locked = true; repeating = true; }
+            {
+              locked = true;
+              repeating = true;
+            }
           ];
         }
         {
           _args = [
             "XF86AudioLowerVolume"
             (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-\")")
-            { locked = true; repeating = true; }
+            {
+              locked = true;
+              repeating = true;
+            }
           ];
         }
         {
@@ -246,14 +256,20 @@ in
           _args = [
             "XF86MonBrightnessUp"
             (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl -e4 -n2 set 5%+\")")
-            { locked = true; repeating = true; }
+            {
+              locked = true;
+              repeating = true;
+            }
           ];
         }
         {
           _args = [
             "XF86MonBrightnessDown"
             (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl -e4 -n2 set 5%-\")")
-            { locked = true; repeating = true; }
+            {
+              locked = true;
+              repeating = true;
+            }
           ];
         }
 
