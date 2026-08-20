@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  lockCmd = "pidof qylock-lock || qylock-lock";
+in
 {
   programs.wleave = {
     enable = true;
@@ -14,14 +17,14 @@
       buttons = [
         {
           label = "lock";
-          action = "loginctl lock-session";
+          action = lockCmd;
           text = "Lock";
           keybind = "l";
           icon = "${pkgs.wleave}/share/wleave/icons/lock.svg";
         }
         {
           label = "logout";
-          action = "loginctl terminate-user $USER";
+          action = "hyprctl dispatch 'hl.exec_cmd(\"hyprshutdown\")'";
           text = "Logout";
           keybind = "e";
           icon = "${pkgs.wleave}/share/wleave/icons/logout.svg";
@@ -152,9 +155,9 @@
 
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd = lockCmd;
         ignore_dbus_inhibit = false;
-        before_sleep_cmd = "loginctl lock-session";
+        before_sleep_cmd = lockCmd;
         after_sleep_cmd = "hyprctl dispatch hl.dsp.dpms({action = on})";
       };
 
@@ -166,7 +169,7 @@
         }
         {
           timeout = 120;
-          on-timeout = "loginctl lock-session";
+          on-timeout = lockCmd;
         }
         {
           timeout = 300;

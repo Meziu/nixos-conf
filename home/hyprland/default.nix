@@ -17,8 +17,9 @@
   home.packages = with pkgs; [
     brightnessctl
 
-    hyprlock
     libnotify
+
+    hyprshutdown
 
     qt6.qtwayland
     qt6.qt5compat

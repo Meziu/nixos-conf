@@ -62,7 +62,7 @@ in
 
       animation = [
         {
-          leaf = "fadeLayersOut"; # wleave takes so long it stays visible during hyprlock
+          leaf = "fadeLayersOut"; # wleave takes so long it stays visible during lock
           enabled = true;
           speed = 2;
           bezier = "default";

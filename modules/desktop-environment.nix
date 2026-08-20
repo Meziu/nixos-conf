@@ -1,18 +1,31 @@
-{ inputs, ... }:
+{
+  ...
+}:
 
 {
   #services.displayManager.gdm.enable = true;
   #security.pam.services.gdm-password.enableGnomeKeyring = true;
-  services.displayManager.ly = {
-    enable = true;
+  /*
+    services.displayManager.ly = {
+      enable = true;
 
-    settings = {
-      animation = "dur_file";
-      full_color = true;
-      dur_file_path = "${inputs.ly-community}/animations/dur/blackhole-smooth-240x67.dur";
+      settings = {
+        animation = "dur_file";
+        full_color = true;
+        dur_file_path = "${inputs.ly-community}/animations/dur/blackhole-smooth-240x67.dur";
+      };
     };
+    security.pam.services.ly.enableGnomeKeyring = true;
+  */
+
+  services.displayManager.sddm.enable = true;
+  services.xserver.enable = true;
+  programs.qylock = {
+    enable = true;
+    theme = "field";
+    sddm.enable = true;
+    quickshell.enable = true;
   };
-  security.pam.services.ly.enableGnomeKeyring = true;
 
   imports = [
     ./hyprland.nix

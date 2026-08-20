@@ -9,19 +9,17 @@
       url = "github:Meziu/qs-hyprview";
       flake = false;
     };
-    ly-community = {
-      url = "git+https://codeberg.org/fairyglade/ly-community.git";
-      flake = false;
+    qylock = {
+      url = "github:Darkkal44/qylock";
     };
   };
-
   outputs =
     {
       self,
       nixpkgs,
       home-manager,
       qs-hyprview,
-      ly-community,
+      qylock,
       ...
     }@inputs:
     {
@@ -30,6 +28,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
+            qylock.nixosModules.default
             ./hosts/vm/configuration.nix
           ];
         };
@@ -37,6 +36,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
+            qylock.nixosModules.default
             ./hosts/thinkbook/configuration.nix
           ];
         };
@@ -46,7 +46,9 @@
         "andreaciliberti" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/home.nix ];
+          modules = [
+            ./home/home.nix
+          ];
         };
       };
     };

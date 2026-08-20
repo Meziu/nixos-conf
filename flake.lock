@@ -1,5 +1,39 @@
 {
   "nodes": {
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -20,22 +54,6 @@
         "type": "github"
       }
     },
-    "ly-community": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1783331194,
-        "narHash": "sha256-BQhlvWmEkXNpbUgtGBzbHjdQwRa2jxHhBBNu8sVzIDQ=",
-        "ref": "refs/heads/main",
-        "rev": "2f22cfaf7d17598c8f60f562d56e16d74b6c99ab",
-        "revCount": 4,
-        "type": "git",
-        "url": "https://codeberg.org/fairyglade/ly-community.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://codeberg.org/fairyglade/ly-community.git"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1786862985,
@@ -43,6 +61,22 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "e5bdc4a41d4c072fe1e3787eaa0320a384741d44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1780243769,
+        "narHash": "sha256-x5UQuRsH3MqI0U9afaXSNqzTPSeZlRLvFAav2Ux1pNw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "331800de5053fcebacf6813adb5db9c9dca22a0c",
         "type": "github"
       },
       "original": {
@@ -68,12 +102,47 @@
         "type": "github"
       }
     },
+    "qylock": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1786536622,
+        "narHash": "sha256-ypS2jlAzcZU1Sf76XNRdKoZr2oeaEV/jhRBSoxonxtc=",
+        "owner": "Darkkal44",
+        "repo": "qylock",
+        "rev": "f86d3f669cf988f50662e60b9128ca726d269a12",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Darkkal44",
+        "repo": "qylock",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "ly-community": "ly-community",
         "nixpkgs": "nixpkgs",
-        "qs-hyprview": "qs-hyprview"
+        "qs-hyprview": "qs-hyprview",
+        "qylock": "qylock"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
       }
     }
   },
