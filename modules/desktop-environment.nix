@@ -1,4 +1,5 @@
 {
+  pkgs,
   ...
 }:
 
@@ -25,6 +26,10 @@
     theme = "field";
     sddm.enable = true;
     quickshell.enable = true;
+  };
+
+  environment.sessionVariables = {
+    QML2_IMPORT_PATH = "${pkgs.qt6.qt5compat}/lib/qt-6/qml";
   };
 
   imports = [

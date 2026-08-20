@@ -85,10 +85,6 @@
     };
     activeConfig = "qs-hyprview";
   };
-  systemd.user.services.quickshell.Service.Environment = [
-    "QML2_IMPORT_PATH=${pkgs.qt6.qt5compat}/lib/qt-6/qml"
-  ];
-  home.sessionVariables.QML2_IMPORT_PATH = "${pkgs.qt6.qt5compat}/lib/qt-6/qml";
 
   # Optional, hint Electron apps to use Wayland:
   home.sessionVariables.NIXOS_OZONE_WL = "1";
