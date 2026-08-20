@@ -37,6 +37,42 @@
   services.pipewire.wireplumber.enable = true;
   services.network-manager-applet.enable = true;
 
+  services.kanshi = {
+    enable = true;
+
+    settings = [
+      {
+        profile.name = "docked";
+        profile.outputs = [
+          {
+            criteria = "eDP-1";
+            mode = "1920x1200@60Hz";
+            status = "disable";
+            scale = 1.0;
+          }
+          {
+            criteria = "LG Electronics E2250 004MAJMFW724";
+            mode = "1920x1080@60Hz";
+            status = "enable";
+            scale = 1.0;
+          }
+        ];
+      }
+
+      {
+        profile.name = "undocked";
+        profile.outputs = [
+          {
+            criteria = "eDP-1";
+            mode = "1920x1200@60Hz";
+            status = "enable";
+            scale = 1.0;
+          }
+        ];
+      }
+    ];
+  };
+
   programs.hyprshot.enable = true;
 
   programs.quickshell = {

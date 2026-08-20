@@ -40,6 +40,11 @@ in
         ecosystem = {
           enforce_permissions = 1;
         };
+
+        misc = {
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+        };
       };
 
       permission = [
@@ -87,18 +92,26 @@ in
 
       monitor = [
         {
-          output = "eDP-1";
+          output = "";
           mode = "preferred";
           position = "auto";
-          scale = "1.0";
-          disabled = true;
+          scale = "auto";
         }
-        {
-          output = "desc:LG Electronics E2250 004MAJMFW724";
-          mode = "preferred";
-          position = "auto-left";
-          scale = "1.0";
-        }
+        /*
+          {
+            output = "eDP-1";
+            mode = "preferred";
+            position = "auto";
+            scale = "1.0";
+            disabled = true;
+          }
+          {
+            output = "desc:LG Electronics E2250 004MAJMFW724";
+            mode = "preferred";
+            position = "auto-left";
+            scale = "1.0";
+          }
+        */
       ];
 
       bind = [
