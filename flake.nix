@@ -9,6 +9,10 @@
       url = "github:Meziu/qs-hyprview";
       flake = false;
     };
+    ly-community = {
+      url = "git+https://codeberg.org/fairyglade/ly-community.git";
+      flake = false;
+    };
   };
 
   outputs =
@@ -17,18 +21,21 @@
       nixpkgs,
       home-manager,
       qs-hyprview,
+      ly-community,
       ...
     }@inputs:
     {
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/vm/configuration.nix
           ];
         };
         thinkbook = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/thinkbook/configuration.nix
           ];

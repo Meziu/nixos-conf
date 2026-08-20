@@ -1,13 +1,18 @@
-{ ... }:
+{ inputs, ... }:
 
 {
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
+  #services.displayManager.gdm.enable = true;
+  #security.pam.services.gdm-password.enableGnomeKeyring = true;
+  services.displayManager.ly = {
+    enable = true;
 
-  services.displayManager.gdm.enable = true;
-  security.pam.services.gdm-password.enableGnomeKeyring = true;
-  # services.desktopManager.plasma6.enable = true;
+    settings = {
+      animation = "dur_file";
+      full_color = true;
+      dur_file_path = "${inputs.ly-community}/animations/dur/blackhole-smooth-240x67.dur";
+    };
+  };
+  security.pam.services.ly.enableGnomeKeyring = true;
 
   imports = [
     ./hyprland.nix

@@ -12,7 +12,6 @@
     audacity
     cheese
     gimp
-    imhex
     prismlauncher
     spotify
     telegram-desktop
