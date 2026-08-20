@@ -5,6 +5,7 @@
     nil # Nix LSP
     nixfmt
     rustup
+    pkg-config
     gcc
     swi-prolog
     haskellPackages.ghc
