@@ -19,7 +19,25 @@
     security.pam.services.ly.enableGnomeKeyring = true;
   */
 
-  services.displayManager.sddm.enable = true;
+  environment.systemPackages = with pkgs; [
+    bibata-cursors
+  ];
+
+  services.displayManager.sddm = {
+    enable = true;
+    setupScript = ''
+      ${pkgs.xrdb}/bin/xrdb -merge - <<EOF
+      Xcursor.theme: Bibata-Modern-Classic
+      EOF
+    '';
+    settings = {
+      Theme = {
+        CursorTheme = "Bibata-Modern-Classic";
+        CursorSize = 24;
+      };
+    };
+  };
+  security.pam.services.sddm.enableGnomeKeyring = true;
   services.xserver.enable = true;
   programs.qylock = {
     enable = true;
