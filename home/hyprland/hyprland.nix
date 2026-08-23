@@ -124,6 +124,13 @@ in
         */
       ];
 
+      workspace_rule = [
+        {
+          workspace = 1;
+          monitor = "desc:LG Electronics E2250 004MAJMFW724";
+        }
+      ];
+
       bind = [
         {
           _args = [

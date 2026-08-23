@@ -22,6 +22,7 @@
     hyprshutdown
 
     qt6.qtwayland
+    qt6.qtmultimedia
     qt6.qt5compat
   ];
 
@@ -41,7 +42,10 @@
   services.kanshi = {
     enable = true;
 
-    settings = [
+
+    settings = let
+      mainMonitor = "LG Electronics E2250 004MAJMFW724";
+      in [
       {
         profile.name = "docked";
         profile.outputs = [
@@ -52,7 +56,7 @@
             scale = 1.0;
           }
           {
-            criteria = "LG Electronics E2250 004MAJMFW724";
+            criteria = mainMonitor;
             mode = "1920x1080@60Hz";
             status = "enable";
             scale = 1.0;

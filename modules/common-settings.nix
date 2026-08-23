@@ -10,18 +10,13 @@ in
   ];
   nixpkgs.config.allowUnfree = true;
 
-  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager = {
     enable = true;
   };
-  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   hardware.bluetooth = {
     enable = true;
@@ -29,14 +24,10 @@ in
   };
 
   hardware.enableRedistributableFirmware = true;
-  # hardware.enableAllFirmware = true;
-
-  # services.hardware.bolt.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Rome";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -51,45 +42,24 @@ in
     LC_TIME = "it_IT.UTF-8";
   };
 
-  # Configure keymap in X11
   services.xserver.xkb = {
     layout = kb.layout;
     variant = kb.variant;
     options = kb.options;
   };
 
-  # Configure console keymap
   console.keyMap = kb.consoleKeyMap;
 
-  # Automount usb devices
   services.udisks2.enable = true;
-  # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+  };
 
-  # List services that you want to enable:
+  networking.firewall.enable = false;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "26.05"; # Did you read the comment?
+  system.stateVersion = "26.05";
 }

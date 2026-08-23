@@ -21,6 +21,9 @@
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
+
+    qt6.qt5compat
+    qt6.qtmultimedia
   ];
 
   services.displayManager.sddm = {
@@ -47,7 +50,7 @@
   };
 
   environment.sessionVariables = {
-    QML2_IMPORT_PATH = "${pkgs.qt6.qt5compat}/lib/qt-6/qml";
+    QML2_IMPORT_PATH = "${pkgs.qt6.qt5compat}/lib/qt-6/qml:${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
   };
 
   imports = [
