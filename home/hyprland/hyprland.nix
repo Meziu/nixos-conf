@@ -58,6 +58,16 @@ in
           type = "screencopy";
           mode = "allow";
         }
+        {
+          binary = "${pkgs.grim}/bin/grim";
+          type = "screencopy";
+          mode = "allow";
+        }
+        {
+          binary = "${pkgs.xdg-desktop-portal-hyprland}/bin/xdg-desktop-portal-hyprland-wrapped";
+          type = "screencopy";
+          mode = "allow";
+        }
       ];
 
       animation = [
@@ -159,6 +169,18 @@ in
               release = true;
               transparent = true;
             }
+          ];
+        }
+        {
+          _args = [
+            "Print"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots")'')
+          ];
+        }
+        {
+          _args = [
+            "XF86LaunchA"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots")'')
           ];
         }
 
