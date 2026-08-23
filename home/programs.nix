@@ -56,6 +56,7 @@
       "html1"
       "make"
       "xml"
+      "qml"
       "haskell"
       "prolog"
     ];
