@@ -64,7 +64,7 @@ in
           mode = "allow";
         }
         {
-          binary = "${pkgs.xdg-desktop-portal-hyprland}/bin/xdg-desktop-portal-hyprland-wrapped";
+          binary = "${pkgs.xdg-desktop-portal-hyprland}/libexec/.xdg-desktop-portal-hyprland-wrapped";
           type = "screencopy";
           mode = "allow";
         }

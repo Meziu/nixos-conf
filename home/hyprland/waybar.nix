@@ -224,11 +224,12 @@
                       rgba(250, 179, 135, 0.05));
         border: 1px solid rgba(250, 179, 135, 0.28);
         border-radius: 18px;
-        margin: 7px 6px;
+        margin: 6px 6px;
         padding: 0 6px;
         box-shadow:
           0 4px 10px rgba(0, 0, 0, 0.35),
           inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        min-height: 40px;
       }
 
       /* ============================================================
