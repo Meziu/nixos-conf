@@ -89,11 +89,11 @@
     "qs-hyprview": {
       "flake": false,
       "locked": {
-        "lastModified": 1787519659,
-        "narHash": "sha256-kxLxoccOEQIcubyqD1DJqkZ/M/+BYc+BIxtpQqf51vo=",
+        "lastModified": 1787520051,
+        "narHash": "sha256-gDsbqtEDL1K9GE4shu1Ed1YG232+cMgzKAzPEnjaJNQ=",
         "owner": "Meziu",
         "repo": "qs-hyprview",
-        "rev": "19957bc350cad04df435dd94212376dab0cbbc93",
+        "rev": "eeba637fe0953edc96e985673f10e3ada87cb2d8",
         "type": "github"
       },
       "original": {
