@@ -142,8 +142,8 @@
           };
           "network" = {
             format-wifi = "{icon} {signalStrength}%";
-            format-ethernet = "󰈀 {ifname}";
-            format-disconnected = "󰤮 Offline";
+            format-ethernet = "󰈀";
+            format-disconnected = "󰤮";
             format-icons = [
               "󰤯"
               "󰤟"

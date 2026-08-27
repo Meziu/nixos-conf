@@ -42,40 +42,47 @@
   services.kanshi = {
     enable = true;
 
-
-    settings = let
-      mainMonitor = "LG Electronics E2250 004MAJMFW724";
-      in [
-      {
-        profile.name = "docked";
-        profile.outputs = [
-          {
-            criteria = "eDP-1";
-            mode = "1920x1200@60Hz";
-            status = "disable";
-            scale = 1.0;
-          }
-          {
-            criteria = mainMonitor;
-            mode = "1920x1080@60Hz";
-            status = "enable";
-            scale = 1.0;
-          }
+    settings =
+      let
+        mainMonitor = "LG Electronics E2250 004MAJMFW724";
+        reloadExec = [
+          "systemctl --user restart waybar.service"
+          "hyprctl reload"
         ];
-      }
+      in
+      [
+        {
+          profile.name = "docked";
+          profile.outputs = [
+            {
+              criteria = "eDP-1";
+              mode = "1920x1200@60Hz";
+              status = "disable";
+              scale = 1.0;
+            }
+            {
+              criteria = mainMonitor;
+              mode = "1920x1080@60Hz";
+              status = "enable";
+              scale = 1.0;
+            }
+          ];
+          profile.exec = reloadExec;
+        }
 
-      {
-        profile.name = "undocked";
-        profile.outputs = [
-          {
-            criteria = "eDP-1";
-            mode = "1920x1200@60Hz";
-            status = "enable";
-            scale = 1.0;
-          }
-        ];
-      }
-    ];
+        {
+          profile.name = "undocked";
+          profile.outputs = [
+            {
+              criteria = "eDP-1";
+              mode = "1920x1200@60Hz";
+              status = "enable";
+              scale = 1.0;
+            }
+          ];
+          profile.exec = reloadExec;
+        }
+      ];
   };
 
   programs.hyprshot.enable = true;
