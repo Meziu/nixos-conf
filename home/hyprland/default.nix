@@ -20,6 +20,7 @@
     libnotify
 
     hyprshutdown
+    hyprpicker
 
     qt6.qtwayland
     qt6.qtmultimedia

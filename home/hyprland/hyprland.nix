@@ -64,6 +64,11 @@ in
           mode = "allow";
         }
         {
+          binary = "${pkgs.hyprpicker}/bin/hyprpicker";
+          type = "screencopy";
+          mode = "allow";
+        }
+        {
           binary = "${pkgs.xdg-desktop-portal-hyprland}/libexec/.xdg-desktop-portal-hyprland-wrapped";
           type = "screencopy";
           mode = "allow";

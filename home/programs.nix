@@ -99,6 +99,24 @@
             };
           };
         };
+
+        qml = {
+          formatter = {
+            external = {
+              command = "qmlformat";
+              arguments = [
+                "-i"
+                "{buffer_path}"
+              ];
+            };
+          };
+          binary = {
+            arguments = [
+              "-E"
+              "additional-args"
+            ];
+          };
+        };
       };
     };
   };
