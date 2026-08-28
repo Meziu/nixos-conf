@@ -113,7 +113,6 @@
           binary = {
             arguments = [
               "-E"
-              "additional-args"
             ];
           };
         };
