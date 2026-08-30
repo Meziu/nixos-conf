@@ -40,6 +40,7 @@
   services.pipewire.wireplumber.enable = true;
   services.network-manager-applet.enable = true;
 
+  /*
   services.kanshi = {
     enable = true;
 
@@ -85,6 +86,7 @@
         }
       ];
   };
+  */
 
   programs.hyprshot.enable = true;
 

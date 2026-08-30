@@ -107,26 +107,23 @@ in
 
       monitor = [
         {
+          output = "eDP-1";
+          mode = "preferred";
+          position = "auto";
+          scale = "1.0";
+        }
+        {
+          output = "desc:LG Electronics E2250 004MAJMFW724";
+          mode = "preferred";
+          position = "auto-left";
+          scale = "1.0";
+        }
+        {
           output = "";
           mode = "preferred";
           position = "auto";
           scale = "auto";
         }
-        /*
-          {
-            output = "eDP-1";
-            mode = "preferred";
-            position = "auto";
-            scale = "1.0";
-            disabled = true;
-          }
-          {
-            output = "desc:LG Electronics E2250 004MAJMFW724";
-            mode = "preferred";
-            position = "auto-left";
-            scale = "1.0";
-          }
-        */
       ];
 
       workspace_rule = [
