@@ -27,6 +27,7 @@
     gnome-clocks
     gparted
     gnome-disk-utility
+    file-roller # gnome unarchiver
     popsicle
     deja-dup
     protonup-ng
