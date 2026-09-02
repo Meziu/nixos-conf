@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   ...
 }:
@@ -6,7 +7,7 @@
 {
   #services.displayManager.gdm.enable = true;
   #security.pam.services.gdm-password.enableGnomeKeyring = true;
-  /*
+
     services.displayManager.ly = {
       enable = true;
 
@@ -17,7 +18,7 @@
       };
     };
     security.pam.services.ly.enableGnomeKeyring = true;
-  */
+
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
@@ -28,6 +29,7 @@
     kdePackages.qtdeclarative
   ];
 
+  /*
   services.displayManager.sddm = {
     enable = true;
     setupScript = ''
@@ -44,10 +46,10 @@
   };
   security.pam.services.sddm.enableGnomeKeyring = true;
   services.xserver.enable = true;
+  */
   programs.qylock = {
     enable = true;
     theme = "field";
-    sddm.enable = true;
     quickshell.enable = true;
   };
 
