@@ -36,6 +36,7 @@
     openssh
     gnupg
     pavucontrol
+    inkscape
   ];
 
   programs.kitty = {
