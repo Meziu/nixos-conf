@@ -121,4 +121,35 @@
       };
     };
   };
+
+  fonts.fontconfig = {
+    enable = true;
+
+    configFile = {
+      song-title-fallback = {
+        enable = true;
+        priority = 50;
+        text = ''
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+          <fontconfig>
+            <match target="pattern">
+              <test name="family" compare="eq" qual="any">
+                <string>ITC Serif Gothic Extra</string>
+              </test>
+              <edit name="family" mode="append" binding="strong">
+                <string>Noto Sans Malayalam</string>
+              </edit>
+              <edit name="family" mode="append" binding="strong">
+                <string>Symbols Nerd Font</string>
+              </edit>
+              <edit name="family" mode="append" binding="strong">
+                <string>Noto Color Emoji</string>
+              </edit>
+            </match>
+          </fontconfig>
+        '';
+      };
+    };
+  };
 }

@@ -41,6 +41,7 @@
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
     nerd-fonts.ubuntu-mono
+    noto-fonts
   ];
 
   programs.virt-manager.enable = true;
