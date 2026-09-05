@@ -37,6 +37,7 @@
     gnupg
     pavucontrol
     inkscape
+    pinta
   ];
 
   programs.kitty = {
