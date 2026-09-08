@@ -47,11 +47,6 @@
   security.pam.services.sddm.enableGnomeKeyring = true;
   services.xserver.enable = true;
   */
-  programs.qylock = {
-    enable = true;
-    theme = "field";
-    quickshell.enable = true;
-  };
 
   environment.sessionVariables = {
     QML2_IMPORT_PATH = "${pkgs.qt6.qtdeclarative}/lib/qt-6/qml:${pkgs.quickshell}/lib/qt-6/qml:${pkgs.qt6.qt5compat}/lib/qt-6/qml:${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";

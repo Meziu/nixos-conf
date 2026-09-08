@@ -9,9 +9,11 @@
       url = "github:Meziu/qs-hyprview";
       flake = false;
     };
-    qylock = {
-      url = "github:Darkkal44/qylock";
-    };
+    /*
+      qylock = {
+        url = "github:Darkkal44/qylock";
+      };
+    */
     ly-community = {
       url = "git+https://codeberg.org/fairyglade/ly-community";
       flake = false;
@@ -23,7 +25,6 @@
       nixpkgs,
       home-manager,
       qs-hyprview,
-      qylock,
       ...
     }@inputs:
     {
@@ -32,7 +33,6 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            qylock.nixosModules.default
             ./hosts/vm/configuration.nix
           ];
         };
@@ -40,7 +40,6 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            qylock.nixosModules.default
             ./hosts/thinkbook/configuration.nix
           ];
         };

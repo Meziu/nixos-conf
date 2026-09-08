@@ -19,6 +19,7 @@
 
     libnotify
 
+    hyprlock
     hyprshutdown
     hyprpicker
 

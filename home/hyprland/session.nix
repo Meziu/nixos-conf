@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  lockCmd = "pidof qylock-lock || qylock-lock";
+  lockCmd = "pidof hyprlock || hyprlock";
 in
 {
   programs.wleave = {
