@@ -82,6 +82,7 @@
   services.libinput.touchpad.naturalScrolling = true;
 
   services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   # Enable touchpad support (enabled by default in most desktopManagers).
   services.libinput.enable = true;
