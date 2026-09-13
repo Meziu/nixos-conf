@@ -38,6 +38,7 @@
     pavucontrol
     inkscape
     pinta
+    eden
   ];
 
   programs.kitty = {
