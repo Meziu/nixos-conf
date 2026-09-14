@@ -23,6 +23,10 @@
   environment.systemPackages = with pkgs; [
     bibata-cursors
 
+    adwaita-icon-theme
+    kdePackages.breeze-icons
+    hicolor-icon-theme
+
     qt6.qtdeclarative
     qt6.qt5compat
     qt6.qtmultimedia
