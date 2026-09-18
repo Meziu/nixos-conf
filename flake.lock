@@ -73,7 +73,21 @@
         "home-manager": "home-manager",
         "ly-community": "ly-community",
         "nixpkgs": "nixpkgs",
-        "qs-hyprview": "qs-hyprview"
+        "qs-hyprview": "qs-hyprview",
+        "ventureshell": "ventureshell"
+      }
+    },
+    "ventureshell": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789759230,
+        "narHash": "sha256-iX+EKlwJA3c5OYKwjEoY93nOBr+NmDzt7Ov81IUK0OE=",
+        "path": "/home/andreaciliberti/Programming/Quickshell/ventureshell",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/andreaciliberti/Programming/Quickshell/ventureshell",
+        "type": "path"
       }
     }
   },

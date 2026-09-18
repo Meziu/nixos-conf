@@ -7,9 +7,10 @@
 {
   imports = [
     ./hyprland.nix
-    ./waybar.nix
-    ./swaync.nix
-    ./session.nix
+    #./waybar.nix
+    #./swaync.nix
+    #./session.nix
+    ./hypridle.nix
     ./hyprpaper.nix
     ./launcher.nix
   ];
@@ -97,8 +98,10 @@
 
     configs = {
       qs-hyprview = inputs.qs-hyprview;
+      ventureshell = inputs.ventureshell;
     };
-    activeConfig = "qs-hyprview";
+
+    activeConfig = "ventureshell";
   };
 
   # Optional, hint Electron apps to use Wayland:

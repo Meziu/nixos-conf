@@ -18,6 +18,10 @@
       url = "git+https://codeberg.org/fairyglade/ly-community";
       flake = false;
     };
+    ventureshell = {
+      url = "/home/andreaciliberti/Programming/Quickshell/ventureshell";#"github:Meziu/ventureshell";
+      flake = false;
+    };
   };
   outputs =
     {
@@ -25,6 +29,7 @@
       nixpkgs,
       home-manager,
       qs-hyprview,
+      ventureshell,
       ...
     }@inputs:
     {

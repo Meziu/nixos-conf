@@ -1,8 +1,9 @@
 { config, ... }:
 
 {
-  # Walker
   services.elephant.enable = true;
+  # Walker
+  /*
   services.walker = {
     enable = true;
     enableElephantIntegration = config.services.elephant.enable;
@@ -22,7 +23,7 @@
         font-family: "Inter", "SF Pro Display", sans-serif;
       }
 
-      /* Floating window itself — the glass card */
+      # Floating window itself — the glass card
       .box-wrapper {
         background: @window_bg_color;
         border: 1px solid alpha(@accent_color, 0.25);
@@ -37,7 +38,7 @@
       .large-icons  { -gtk-icon-size: 34px; }
       scrollbar     { opacity: 0; }
 
-      /* Search bar — rounded pill, same language as the waybar zones */
+      # Search bar — rounded pill, same language as the waybar zones
       .search-container {
         background: alpha(@surface_color, 0.55);
         border: 1px solid alpha(@accent_color, 0.2);
@@ -57,7 +58,7 @@
 
       .placeholder, .elephant-hint, .preview-box { color: @subtext_color; }
 
-      /* Results list */
+      # Results list
       .list { color: @text_color; }
 
       .item-box {
@@ -86,7 +87,7 @@
       .providerlist .item-subtext { opacity: 0.9; }
       .item-image-text { font-size: 26px; }
 
-      /* Preview pane */
+      # Preview pane
       .preview {
         background: alpha(@surface_color, 0.4);
         border: 1px solid alpha(@accent_color, 0.2);
@@ -95,7 +96,7 @@
       }
       .preview .large-icons { -gtk-icon-size: 64px; }
 
-      /* Calculator / symbols / todo / bluetooth providers */
+      # Calculator / symbols / todo / bluetooth providers
       .calc .item-text { font-size: 26px; color: @accent_color; font-weight: 700; }
       .symbols .item-image { font-size: 24px; }
       .todo.done .item-text-box { opacity: 0.35; }
@@ -103,7 +104,7 @@
       .todo.active { font-weight: bold; color: @accent_color; }
       .bluetooth.disconnected { opacity: 0.45; }
 
-      /* Keybind hints footer */
+      # Keybind hints footer
       .keybinds {
         padding-top: 12px;
         margin-top: 10px;
@@ -133,5 +134,5 @@
       .preview-content.archlinuxpkgs,
       .preview-content.dnfpackages { font-family: monospace; }
     '';
-  };
+  };*/
 }

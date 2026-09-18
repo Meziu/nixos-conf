@@ -39,6 +39,7 @@
     inkscape
     pinta
     eden
+    osu-lazer-bin
   ];
 
   programs.kitty = {

@@ -103,6 +103,12 @@ in
             (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"blueman-applet\")\nend")
           ];
         }
+        {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"qs -c qs-hyprview\")\nend")
+          ];
+        }
       ];
 
       monitor = [
@@ -143,7 +149,7 @@ in
         {
           _args = [
             "SUPER + SUPER_L"
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"walker\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"qs -c ventureshell ipc call launcher toggle\")")
           ];
         }
         {
