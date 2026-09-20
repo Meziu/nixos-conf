@@ -80,14 +80,17 @@
     "ventureshell": {
       "flake": false,
       "locked": {
-        "lastModified": 1789759230,
-        "narHash": "sha256-iX+EKlwJA3c5OYKwjEoY93nOBr+NmDzt7Ov81IUK0OE=",
-        "path": "/home/andreaciliberti/Programming/Quickshell/ventureshell",
-        "type": "path"
+        "lastModified": 1789759223,
+        "narHash": "sha256-aNGqv9Apya4YETTvK2WbapxVU7DeCwH+fA8TCnRf2Lo=",
+        "owner": "Meziu",
+        "repo": "ventureshell",
+        "rev": "ecce46ca6d0bd2c817c4bfc77099a916ad4fff7c",
+        "type": "github"
       },
       "original": {
-        "path": "/home/andreaciliberti/Programming/Quickshell/ventureshell",
-        "type": "path"
+        "owner": "Meziu",
+        "repo": "ventureshell",
+        "type": "github"
       }
     }
   },

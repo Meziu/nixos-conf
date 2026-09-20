@@ -19,7 +19,7 @@
       flake = false;
     };
     ventureshell = {
-      url = "/home/andreaciliberti/Programming/Quickshell/ventureshell";#"github:Meziu/ventureshell";
+      url = "github:Meziu/ventureshell";
       flake = false;
     };
   };
