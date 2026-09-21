@@ -9,11 +9,6 @@
       url = "github:Meziu/qs-hyprview";
       flake = false;
     };
-    /*
-      qylock = {
-        url = "github:Darkkal44/qylock";
-      };
-    */
     ly-community = {
       url = "git+https://codeberg.org/fairyglade/ly-community";
       flake = false;
