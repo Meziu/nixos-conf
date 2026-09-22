@@ -18,16 +18,16 @@ in
 
       listener = [
         {
-          timeout = 60;
+          timeout = 300;
           on-timeout = "brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
           on-resume = "brightnessctl -r"; # monitor backlight restore.
         }
         {
-          timeout = 120;
+          timeout = 360;
           on-timeout = lockCmd;
         }
         {
-          timeout = 300;
+          timeout = 390;
           on-resume = "hyprctl dispatch hl.dsp.dpms({action = on})";
           on-timeout = "hyprctl dispatch hl.dsp.dpms({action = off})";
         }
