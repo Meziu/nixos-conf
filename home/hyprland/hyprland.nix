@@ -20,7 +20,9 @@ in
           gaps_in = 6;
           gaps_out = 10;
           border_size = 2;
-          "col.active_border" = "#F28C28";
+          col.active_border = "#F28C28";
+
+          layout = "dwindle";
         };
 
         decoration = {
@@ -254,25 +256,25 @@ in
         {
           _args = [
             "XF86AudioPlay"
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl play-pause\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"qs -c ventureshell ipc call mediaplayer playToggle\")")
           ];
         }
         {
           _args = [
             "XF86AudioNext"
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl next\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"qs -c ventureshell ipc call mediaplayer next\")")
           ];
         }
         {
           _args = [
             "XF86AudioPrev"
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl previous\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"qs -c ventureshell ipc call mediaplayer back\")")
           ];
         }
         {
           _args = [
             "XF86AudioStop"
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl stop\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"qs -c ventureshell ipc call mediaplayer stop\")")
           ];
         }
         {

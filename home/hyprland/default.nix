@@ -17,6 +17,7 @@
 
   home.packages = with pkgs; [
     brightnessctl
+    cava
 
     libnotify
 
@@ -38,7 +39,7 @@
     };
   };
 
-  services.playerctld.enable = true;
+  #services.playerctld.enable = true;
   services.pipewire.wireplumber.enable = true;
   services.network-manager-applet.enable = true;
 
