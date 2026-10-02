@@ -7,9 +7,6 @@
 {
   imports = [
     ./hyprland.nix
-    #./waybar.nix
-    #./swaync.nix
-    #./session.nix
     ./hypridle.nix
     ./hyprpaper.nix
     ./launcher.nix

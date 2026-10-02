@@ -80,11 +80,11 @@
     "ventureshell": {
       "flake": false,
       "locked": {
-        "lastModified": 1790375400,
-        "narHash": "sha256-zSYTwZgJqXBnhnRzX6ux9nsscstAuqQVvbcr/XSJe/8=",
+        "lastModified": 1790698222,
+        "narHash": "sha256-RDEay/+AihQSPVbdLIrGgzWTYE/LByoSysFnv0G+ouo=",
         "owner": "Meziu",
         "repo": "ventureshell",
-        "rev": "f23ed4e062dfa24be6dd5fd6a591b7b816c13620",
+        "rev": "80d3481bac9cda7084f9bc4485e1e43156ef6564",
         "type": "github"
       },
       "original": {
