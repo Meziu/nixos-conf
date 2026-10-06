@@ -40,6 +40,7 @@
     pinta
     eden
     osu-lazer-bin
+    heroic
   ];
 
   programs.kitty = {

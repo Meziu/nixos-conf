@@ -11,6 +11,7 @@
       swi-prolog
       haskellPackages.ghc
       haskellPackages.cabal-install
+      rstudio
 
       # Utilities
       perf
