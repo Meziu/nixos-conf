@@ -9,7 +9,7 @@
     kdePackages.kate
     kdePackages.filelight
     vlc
-    audacity
+    #audacity
     cheese
     gimp
     prismlauncher
@@ -41,6 +41,8 @@
     eden
     osu-lazer-bin
     heroic
+    itch
+    shotcut
   ];
 
   programs.kitty = {

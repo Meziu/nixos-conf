@@ -1,5 +1,10 @@
 { pkgs, lib, ... }:
 
+let
+  custom-r-studio = pkgs.rstudioWrapper.override {
+    packages = with pkgs.rPackages; [ ggplot2 dplyr xts ];
+  };
+in
 {
   home.packages =
     (with pkgs; [
@@ -11,7 +16,8 @@
       swi-prolog
       haskellPackages.ghc
       haskellPackages.cabal-install
-      rstudio
+
+      custom-r-studio
 
       # Utilities
       perf
