@@ -151,7 +151,15 @@ in
         {
           _args = [
             "SUPER + SUPER_L"
-            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"qs -c ventureshell ipc call launcher toggle\")")
+            (lib.generators.mkLuaInline ''
+              function()
+                local w = hl.get_active_window()
+                if w ~= nil and w.fullscreen and w.fullscreen ~= 0 then
+                  hl.dispatch(hl.dsp.window.fullscreen({ mode = "fullscreen", action = "unset", window = w }))
+                end
+                hl.dispatch(hl.dsp.exec_cmd("qs -c ventureshell ipc call launcher toggle"))
+              end
+            '')
           ];
         }
         {
