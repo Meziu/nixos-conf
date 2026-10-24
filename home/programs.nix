@@ -3,6 +3,7 @@
 {
   imports = [
     ./tex.nix
+    ./games.nix
   ];
 
   home.packages = with pkgs; [
@@ -12,7 +13,6 @@
     #audacity
     cheese
     gimp
-    prismlauncher
     spotify
     telegram-desktop
     deluge
@@ -30,7 +30,6 @@
     file-roller # gnome unarchiver
     popsicle
     deja-dup
-    protonup-ng
     obs-studio
     rclone
     openssh
@@ -38,10 +37,6 @@
     pavucontrol
     inkscape
     pinta
-    eden
-    osu-lazer-bin
-    heroic
-    itch
     shotcut
   ];
 
@@ -54,80 +49,6 @@
     };
   };
   programs.discord.enable = true;
-
-  programs.zed-editor = {
-    enable = true;
-
-    extensions = [
-      "nix"
-      "git-firefly"
-      "toml"
-      "html1"
-      "make"
-      "xml"
-      "qml"
-      "haskell"
-      "prolog"
-    ];
-
-    userSettings = {
-      "cli_default_open_behavior" = "existing_window";
-      "project_panel" = {
-        "dock" = "left";
-      };
-      "outline_panel" = {
-        "dock" = "left";
-      };
-      "collaboration_panel" = {
-        "dock" = "left";
-      };
-      "git_panel" = {
-        "dock" = "left";
-      };
-      "calls" = {
-        "mute_on_join" = true;
-      };
-      "show_edit_predictions" = false;
-      "ui_font_size" = 16;
-      "buffer_font_size" = 16;
-      "theme" = {
-        "mode" = "system";
-        "light" = "One Light";
-        "dark" = "Ayu Dark";
-      };
-      "disable_ai" = true;
-      languages = {
-        Nix = {
-          language_servers = [
-            "nil"
-            "!nixd"
-          ];
-          formatter = {
-            external = {
-              command = "nixfmt";
-            };
-          };
-        };
-
-        qml = {
-          formatter = {
-            external = {
-              command = "qmlformat";
-              arguments = [
-                "-i"
-                "{buffer_path}"
-              ];
-            };
-          };
-          binary = {
-            arguments = [
-              "-E"
-            ];
-          };
-        };
-      };
-    };
-  };
 
   fonts.fontconfig = {
     enable = true;
