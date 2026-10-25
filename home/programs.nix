@@ -80,4 +80,58 @@
       };
     };
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = let
+      browser  = "firefox.desktop";
+      files    = "org.gnome.Nautilus.desktop";   # swap for your file manager, e.g. org.kde.dolphin.desktop
+      editor   = "org.kde.kate.desktop";
+      image    = "org.gnome.eog.desktop";
+      pdf      = "org.gnome.Papers.desktop";
+      video    = "vlc.desktop";
+      audio    = "vlc.desktop";
+      archive  = "org.gnome.FileRoller.desktop";
+      mail     = "thunderbird.desktop";
+    in {
+      "inode/directory" = files;
+
+      "x-scheme-handler/http"  = browser;
+      "x-scheme-handler/https" = browser;
+      "text/html"              = browser;
+      "x-scheme-handler/about" = browser;
+
+      "x-scheme-handler/mailto" = mail;
+
+      "text/plain"      = editor;
+      "text/markdown"   = editor;
+      "application/json" = editor;
+      "text/x-tex"      = editor;
+
+      "application/pdf" = pdf;
+      "application/vnd.oasis.opendocument.text"        = "libreoffice-writer.desktop";
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "libreoffice-writer.desktop";
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"       = "libreoffice-calc.desktop";
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation" = "libreoffice-impress.desktop";
+
+      "image/png"  = image;
+      "image/jpeg" = image;
+      "image/gif"  = image;
+      "image/webp" = image;
+      "image/svg+xml" = "org.inkscape.Inkscape.desktop";
+      "video/mp4"  = video;
+      "video/x-matroska" = video;
+      "audio/mpeg" = audio;
+      "audio/flac" = audio;
+
+      "application/zip"              = archive;
+      "application/x-tar"            = archive;
+      "application/x-7z-compressed"  = archive;
+
+      "x-scheme-handler/tg"       = "org.telegram.desktop.desktop";
+      "x-scheme-handler/discord"  = "discord.desktop";
+      "x-scheme-handler/magnet"   = "deluge.desktop";
+      "application/x-bittorrent"  = "deluge.desktop";
+    };
+  };
 }
