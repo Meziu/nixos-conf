@@ -27,9 +27,9 @@ in
   xdg.enable = true;
   xdg.portal.enable = true;
 
-  home.packages = with pkgs; [
-    networkmanagerapplet
-  ];
+  home.sessionVariables = {
+    EDITOR = "vim";
+  };
 
   home.stateVersion = "26.05";
 }

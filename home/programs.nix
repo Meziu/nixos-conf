@@ -7,6 +7,7 @@
   ];
 
   home.packages = with pkgs; [
+    networkmanagerapplet
     kdePackages.kate
     kdePackages.filelight
     vlc
@@ -39,6 +40,8 @@
     pinta
     shotcut
   ];
+
+  programs.bash.enable = true;
 
   programs.kitty = {
     enable = true;
