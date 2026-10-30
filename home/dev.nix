@@ -2,7 +2,7 @@
 
 let
   custom-r-studio = pkgs.rstudioWrapper.override {
-    packages = with pkgs.rPackages; [ ggplot2 dplyr xts ];
+    packages = with pkgs.rPackages; [ scatterplot3d corrplot ggplot2 dplyr xts ];
   };
 in
 {
